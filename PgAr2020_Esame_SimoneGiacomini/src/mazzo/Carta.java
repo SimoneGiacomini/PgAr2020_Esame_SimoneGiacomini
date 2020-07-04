@@ -10,7 +10,7 @@ public class Carta implements Comparable<Carta>  {
 /**Attributo che identifica il tipo della carta*/
 	private Tipo tipo;
 	
-	/**Costruttore*/
+	/**Costruttore */
 	public Carta(int id, Colore colore, Tipo tipo, String valore) {
 		setId(id);
 		this.colore=colore;
@@ -26,7 +26,7 @@ public class Carta implements Comparable<Carta>  {
 	}
 
 	/**
-	 * @param tipo the tipo to set
+	 * @param tipo da settare
 	 */
 	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
@@ -44,10 +44,9 @@ public class Carta implements Comparable<Carta>  {
 	public String getValore() {
 		return valore;
 	}
-
+/**@param valore da settare come valore di questa carta*/
 	public void setValore(String valore) {
-//	TODO	if (Integer > 9 || valore < 0)
-//			throw new IllegalArgumentException("Il valore di una carta puo' essere soltanto tra 0 e 9");
+
 		this.valore = valore;
 	}
 
@@ -57,7 +56,7 @@ public class Carta implements Comparable<Carta>  {
 	public String getColore() {
 		return colore.name();
 	}
-
+/**@return true se il loro id e' uguale*/
 	public boolean equals(Object o) {
 
 		if (o instanceof Carta) {
@@ -67,25 +66,33 @@ public class Carta implements Comparable<Carta>  {
 		}
 		return false;
 	}
-
+/**@return true se o il colore o il valore tra le due carte e' uguale*/
 	public boolean isMatch(Carta c) {
 
 		return this.colore.equals(c.colore) || this.valore.equals(c.valore);
 	}
-
+/**@return id*/
 	public int hashCode() {
 		return id;
 	}
-	
+	/**@return una String che descrive la carta <br>
+	 * @code valore+colore+tipo*/
 	public String toString() {
 		
 		StringBuilder fine= new StringBuilder();
+		fine.append(valore+" ");
 		fine.append(colore.toString()+" ");
-		fine.append(tipo.toString()+" ");
-		fine.append(valore);
+		fine.append(tipo.toString());
+		
 		return fine.toString();
 	}
+	/**@return true se il tipo e' {@linkplain Tipo#speciale}*/
+	public boolean isSpeciale() {
+		return tipo.equals(Tipo.speciale);
+	}
 
+	/**@return il compareTo sulle carte<br>
+	 * si basa sull'id*/
 	@Override
 	public int compareTo(Carta o) {
 		return o.getId()-id;

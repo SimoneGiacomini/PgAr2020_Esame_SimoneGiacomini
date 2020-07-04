@@ -9,29 +9,26 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
+/**classe che identifica un mazzo*/
 public class Mazzo implements Comparable<Mazzo> {
-
+/**attributo che simula il mazzo vero e proprio*/
 	private ArrayDeque<Carta> carte = new ArrayDeque<>();
-
+/**attributo che identifica il nome del mazzo*/
 	private String nome;
-
+/**costruttore del mazzo*/
 	public Mazzo(String nome, List<Carta> carte) {
 		this.nome = nome;
 		this.carte.clear();
 		this.carte.addAll(carte);
 	}
-
+/**Costruisce un mazzo con una sola carta iniziale*/
 	public Mazzo(String nome,Carta iniziale) {
 		this.nome = nome;
 		this.carte.clear();
 		carte.addFirst(iniziale);
 	}
 
-	public Mazzo() {
-
-	}
-
+/**@return una String tipo {carta }*/
 	public String toString() {
 		return carte.toString();
 	}

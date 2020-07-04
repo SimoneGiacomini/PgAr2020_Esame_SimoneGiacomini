@@ -16,7 +16,7 @@ import mazzo.Tipo;
 
 public class XMLManager {
 
-	public static List<Carta> readCities(String filePath) throws XMLStreamException, FileNotFoundException {
+	public static List<Carta> leggiCarte(String filePath) throws XMLStreamException, FileNotFoundException {
 		List<Carta> mazzo = new ArrayList<Carta>();
 
 		XMLInputFactory xmlif = XMLInputFactory.newInstance();
@@ -41,7 +41,7 @@ public class XMLManager {
 						int idCarta= Integer.valueOf(xmlr.getAttributeValue(0));
 						
 						Tipo tipo= Tipo.valueOf(xmlr.getAttributeValue(1));
-						//TODO
+						
 						String valore= (xmlr.getAttributeValue(2));
 						
 						mazzo.add(new Carta(idColore*100+idCarta,colore,tipo,valore));

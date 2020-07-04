@@ -15,8 +15,7 @@ public class ArchivioMazzi {
 	
 	private static Map<String,Mazzo> mazzi= new TreeMap();
 	
-	private static MyMenu<Object> menu= new MyMenu<>("Mazzi disponibili", mazzi.keySet().toArray());
-			
+		
 	
 	private ArchivioMazzi() {}
 	
@@ -28,11 +27,13 @@ public class ArchivioMazzi {
 		return mazzi.get(nomeMazzo);
 	}
 	
-	public String toString() {
+	public static String toStringa() {
+		MyMenu<Object> menu= new MyMenu<>("Mazzi disponibili", mazzi.keySet().toArray());
 		return menu.toString();
 	}
 	
 	public static Mazzo scegliUnMazzo() {
+		MyMenu<Object> menu= new MyMenu<>("Mazzi disponibili", mazzi.keySet().toArray());
 		return mazzi.get((String)menu.scegliSenzaEsciEritornaOpzione());
 	}
 }

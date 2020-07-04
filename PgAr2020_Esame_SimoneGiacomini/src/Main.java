@@ -5,23 +5,25 @@ import javax.xml.stream.XMLStreamException;
 import classifica.Player;
 import gioco.Game;
 import mazzo.Mazzo;
+import raccoltaMazzi.ArchivioMazzi;
+import util.mylib.InputDati;
 
 
 
 
 public class Main {
 
+	static final String[] file= {"nucleoBaseUnoGiOh","Uno_Gi_OhConPescaDue"};
 	public static void main(String args[]) throws FileNotFoundException, XMLStreamException {
+for (int i = 0; i < file.length; i++) {
 
-		Mazzo mazzo= (new Mazzo("UNI",XMLManager.readCities("./input/Uno_Gi_OhConPescaDue.xml")));
+		ArchivioMazzi.aggiungiMazzo( (new Mazzo(file[i],XMLManager.leggiCarte(String.format("./input/%s.xml", file[i])))));
+}		
 		
-		
-		System.out.println(mazzo);
-		mazzo.mischia();
-		System.out.println(mazzo);
-		Player pl1= new Player("Ciao1");
-		Player pl2 =new Player("SCIAAPP");
-		Game g= new Game(pl1,pl2,mazzo);
+	Mazzo scelto= ArchivioMazzi.scegliUnMazzo();	
+		Player pl1= new Player(InputDati.leggiStringaNonVuota("Inserire nome pl1 "));
+		Player pl2 =new Player(InputDati.leggiStringaNonVuota("Inserire nome pl2 "));
+		Game g= new Game(pl1,pl2,scelto);
 		g.game();
 	}
 }
