@@ -29,7 +29,7 @@ public class XMLManager {
 				
 				
 				if (xmlr.getEventType() == XMLStreamConstants.START_ELEMENT && xmlr.getLocalName().equals("sottomazzo")) {
-					 String idColore= xmlr.getAttributeValue(0);
+					 int idColore= Integer.valueOf(xmlr.getAttributeValue(0));
 					Colore colore = Colore.valueOf(xmlr.getAttributeValue(1));
 					int numeroCarte = Integer.parseInt(xmlr.getAttributeValue(2));
 					
@@ -38,13 +38,13 @@ public class XMLManager {
 
 					while ((xmlr.getEventType() == XMLStreamConstants.START_ELEMENT)) {
 						
-						String idCarta= xmlr.getAttributeValue(0);
+						int idCarta= Integer.valueOf(xmlr.getAttributeValue(0));
 						
 						Tipo tipo= Tipo.valueOf(xmlr.getAttributeValue(1));
 						//TODO
 						String valore= (xmlr.getAttributeValue(2));
 						
-						mazzo.add(new Carta(idColore+idCarta,colore,tipo,valore));
+						mazzo.add(new Carta(idColore*100+idCarta,colore,tipo,valore));
 						
 						
 						xmlr.nextTag();

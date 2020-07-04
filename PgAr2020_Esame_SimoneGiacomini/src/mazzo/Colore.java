@@ -1,14 +1,5 @@
 package mazzo;
-
+/**Sono i vari tipi di colori della carta*/
 public enum Colore {
-	blu(0), rosso(1), giallo(2), verde(3);
-	private int id;
-
-	Colore(int id) {
-		this.id = id;
+	blu, rosso, giallo, verde;
 	}
-	
-	public int getId() {
-		return id;
-	}
-}

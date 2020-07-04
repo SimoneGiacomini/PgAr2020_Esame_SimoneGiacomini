@@ -1,12 +1,14 @@
 package classifica;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import mazzo.Carta;
 
 public class Player implements Comparable<Player>{
 	
-	private Collection<Carta> mano;
+	private List<Carta> mano= new ArrayList<Carta>();
 	
 	private String nome;
 	
@@ -19,14 +21,14 @@ public class Player implements Comparable<Player>{
 	/**
 	 * @return the mano
 	 */
-	public Collection<Carta> getMano() {
+	public List<Carta> getMano() {
 		return mano;
 	}
 
 	/**
 	 * @param mano the mano to set
 	 */
-	public void setMano(Collection<Carta> mano) {
+	public void setMano(List<Carta> mano) {
 		this.mano = mano;
 	}
 
@@ -66,5 +68,18 @@ public class Player implements Comparable<Player>{
 	
 	public String toString() {
 		return this.nome;
+	}
+	
+	public boolean vince() {
+		return mano.isEmpty();
+	}
+	
+	public Carta aggiungiCarta(Carta c) {
+		mano.add(c);
+		return c;
+	}
+	
+	public boolean rimuoviCarta(Carta c) {
+		return mano.remove(c);
 	}
 }

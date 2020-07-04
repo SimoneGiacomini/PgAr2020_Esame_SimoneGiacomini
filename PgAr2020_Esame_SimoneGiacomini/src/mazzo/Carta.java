@@ -1,23 +1,17 @@
 package mazzo;
-
+/**Rappresenta una singola carta*/
 public class Carta implements Comparable<Carta>  {
-
+/**attributo che identifica il colore della carta*/
 	private Colore colore;
-	
+	/**Attributo che identifica il valore della carta*/
 	private String valore;
-	
-	private String id;
-
+	/**Attributo che identifica l'id della carta*/
+	private int id;
+/**Attributo che identifica il tipo della carta*/
 	private Tipo tipo;
 	
-	/** Costruttore */
-//	public Carta(Colore colore, int valore) {
-//
-//		this.colore = colore;
-//		this.valore = valore;
-//	}
-//	
-	public Carta(String id, Colore colore, Tipo tipo, String valore) {
+	/**Costruttore*/
+	public Carta(int id, Colore colore, Tipo tipo, String valore) {
 		setId(id);
 		this.colore=colore;
 		setTipo(tipo);
@@ -39,11 +33,11 @@ public class Carta implements Comparable<Carta>  {
 	}
 
 	/** setta l'id della carta */
-	private void setId(String id) {
+	private void setId(int id) {
 	this.id=id;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
@@ -76,18 +70,17 @@ public class Carta implements Comparable<Carta>  {
 
 	public boolean isMatch(Carta c) {
 
-		return this.colore.equals(c.colore) || this.valore == c.valore;
+		return this.colore.equals(c.colore) || this.valore.equals(c.valore);
 	}
 
 	public int hashCode() {
-		return id.hashCode();
+		return id;
 	}
 	
 	public String toString() {
 		
-		StringBuilder fine= new StringBuilder(id+" ");
-		fine.append(colore.toString());
-		fine.append(' ');
+		StringBuilder fine= new StringBuilder();
+		fine.append(colore.toString()+" ");
 		fine.append(tipo.toString()+" ");
 		fine.append(valore);
 		return fine.toString();
@@ -95,6 +88,6 @@ public class Carta implements Comparable<Carta>  {
 
 	@Override
 	public int compareTo(Carta o) {
-		return colore.compareTo(o.colore);
+		return o.getId()-id;
 	}
 }
