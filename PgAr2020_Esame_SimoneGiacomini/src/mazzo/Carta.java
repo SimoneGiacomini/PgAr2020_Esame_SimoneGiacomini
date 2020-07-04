@@ -1,23 +1,23 @@
 package mazzo;
 
-public class Carta   {
+public class Carta implements Comparable<Carta>  {
 
 	private Colore colore;
 	
-	private int valore;
+	private String valore;
 	
 	private String id;
 
 	private Tipo tipo;
 	
 	/** Costruttore */
-	public Carta(Colore colore, int valore) {
-
-		this.colore = colore;
-		this.valore = valore;
-	}
-	
-	public Carta(String id, Colore colore, Tipo tipo, int valore) {
+//	public Carta(Colore colore, int valore) {
+//
+//		this.colore = colore;
+//		this.valore = valore;
+//	}
+//	
+	public Carta(String id, Colore colore, Tipo tipo, String valore) {
 		setId(id);
 		this.colore=colore;
 		setTipo(tipo);
@@ -47,13 +47,13 @@ public class Carta   {
 		return id;
 	}
 
-	public int getValore() {
+	public String getValore() {
 		return valore;
 	}
 
-	public void setValore(int valore) {
-		if (valore > 9 || valore < 0)
-			throw new IllegalArgumentException("Il valore di una carta puo' essere soltanto tra 0 e 9");
+	public void setValore(String valore) {
+//	TODO	if (Integer > 9 || valore < 0)
+//			throw new IllegalArgumentException("Il valore di una carta puo' essere soltanto tra 0 e 9");
 		this.valore = valore;
 	}
 
@@ -91,5 +91,10 @@ public class Carta   {
 		fine.append(tipo.toString()+" ");
 		fine.append(valore);
 		return fine.toString();
+	}
+
+	@Override
+	public int compareTo(Carta o) {
+		return colore.compareTo(o.colore);
 	}
 }

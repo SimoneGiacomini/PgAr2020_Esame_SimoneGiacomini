@@ -2,6 +2,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.xml.stream.XMLInputFactory;
 import javax.xml.stream.XMLStreamConstants;
@@ -15,8 +16,8 @@ import mazzo.Tipo;
 
 public class XMLManager {
 
-	public static Collection<Carta> readCities(String filePath) throws XMLStreamException, FileNotFoundException {
-		Collection<Carta> mazzo = new ArrayList<Carta>();
+	public static List<Carta> readCities(String filePath) throws XMLStreamException, FileNotFoundException {
+		List<Carta> mazzo = new ArrayList<Carta>();
 
 		XMLInputFactory xmlif = XMLInputFactory.newInstance();
 		XMLStreamReader xmlr = null;
@@ -40,10 +41,11 @@ public class XMLManager {
 						String idCarta= xmlr.getAttributeValue(0);
 						
 						Tipo tipo= Tipo.valueOf(xmlr.getAttributeValue(1));
-						
-						int valore= Integer.valueOf(xmlr.getAttributeValue(2));
+						//TODO
+						String valore= (xmlr.getAttributeValue(2));
 						
 						mazzo.add(new Carta(idColore+idCarta,colore,tipo,valore));
+						
 						
 						xmlr.nextTag();
 						xmlr.nextTag();
@@ -62,5 +64,6 @@ public class XMLManager {
 		}
 
 		return mazzo;
+		
 	}
 }

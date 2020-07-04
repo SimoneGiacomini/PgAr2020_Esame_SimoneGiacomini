@@ -64,5 +64,7 @@ public class Player implements Comparable<Player>{
 		return vittorie;
 	}
 	
-	
+	public String toString() {
+		return this.nome;
+	}
 }
