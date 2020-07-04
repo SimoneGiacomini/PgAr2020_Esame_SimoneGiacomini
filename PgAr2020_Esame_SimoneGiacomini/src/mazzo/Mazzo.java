@@ -28,19 +28,21 @@ public class Mazzo implements Comparable<Mazzo> {
 		carte.addFirst(iniziale);
 	}
 
-/**@return una String tipo {carta }*/
+/**@return una String tipo {carta.toString, carta2.toString... }*/
 	public String toString() {
 		return carte.toString();
 	}
 
+	/**@return true se riesce ad inserire in cima la carta passata*/
 	public boolean inserisciInCima(Carta c) {
 		return carte.offerFirst(c);
 	}
-
+/**@return la carta in cima a questo mazzo
+ * */
 	public Carta getCartaInCima() {
 		return carte.getFirst();
 	}
-
+/**@return una lista di carte prese da questo mazzo e mischiate, e salvate nell'attributo*/
 	public List<Carta> mischia() {
 		List<Carta> carte = new ArrayList<>();
 		for (Iterator iterator = this.carte.iterator(); iterator.hasNext();) {
@@ -55,13 +57,13 @@ public class Mazzo implements Comparable<Mazzo> {
 		this.carte.addAll(carte);
 		return carte;
 	}
-
+/**@return una carta presa dalla cima di questo mazzo*/
 	public Carta pesca() {
 
 		return this.carte.pop();
 
 	}
-
+/**@return una lista di Carte ordinate, vengono salvate  anche nell'attributo*/
 	public List<Carta> ordinaCarte() {
 		List<Carta> carte = new ArrayList<>();
 		for (Iterator iterator = this.carte.iterator(); iterator.hasNext();) {
@@ -77,7 +79,7 @@ public class Mazzo implements Comparable<Mazzo> {
 		return carte;
 
 	}
-
+/**@return una lista di carte di questo mazzo*/
 	public List<Carta> daiMazzo() {
 		List<Carta> carte = new ArrayList<>();
 		for (Iterator iterator = this.carte.iterator(); iterator.hasNext();) {
@@ -86,15 +88,15 @@ public class Mazzo implements Comparable<Mazzo> {
 		}
 		return carte;
 	}
-
+/**@return true se il mazzo e' vuoto*/
 	public boolean vuoto() {
 		return carte.isEmpty();
 	}
-
+/**@return la quantita' di carte presenti nel mazzo*/
 	public int quanteCartePresenti() {
 		return carte.size();
 	}
-
+/**@return true se i due mazzi sono uguali*/
 	public boolean equals(Object o) {
 
 		if (o instanceof Mazzo) {
@@ -103,7 +105,7 @@ public class Mazzo implements Comparable<Mazzo> {
 		}
 		return false;
 	}
-
+/***/
 	public int hashCode() {
 		int hash = 0;
 		for (Iterator iterator = this.ordinaCarte().iterator(); iterator.hasNext();) {
@@ -112,7 +114,7 @@ public class Mazzo implements Comparable<Mazzo> {
 		}
 		return hash;
 	}
-
+/**@return il nome del mazzo*/
 	public String getNome() {
 		return nome;
 	}
