@@ -7,6 +7,7 @@ import java.util.List;
 
 import classifica.Player;
 import mazzo.Carta;
+import mazzo.Mazzo;
 import util.mylib.MyMenu;
 
 public class Game {
@@ -19,8 +20,7 @@ public class Game {
 
 	private Mazzo scarti;
 
-	private static final String PESCA = "Pesca dal Mazzo";
-
+	
 	public Game(Player pl1, Player pl2, Mazzo mazzo) {
 		this.pl1 = pl1;
 		this.pl2 = pl2;
@@ -33,7 +33,7 @@ public class Game {
 		mazzo.mischia();
 		int first = chiIniziaPerPrimo();
 
-		scarti = new Mazzo(mazzo.pesca());
+		scarti = new Mazzo("Scarti", mazzo.pesca());
 
 		if (first == 1) {
 			gioco(pl1, pl2);
@@ -90,30 +90,35 @@ public class Game {
 
 	public void gioco(Player primo, Player secondo) {
 
-		while (!(primo.vince() || secondo.vince())) {
+		while (!(primo.isVincitore() || secondo.isVincitore())) {
 			scartaCarta(primo);
-			if(primo.vince())
+			if (primo.isVincitore())
 				break;
 			scartaCarta(secondo);
 		}
 		System.out.print("Vince");
-		if (primo.vince())
+		if (primo.isVincitore()) {
 			System.out.println(primo.getNome());
-		else
+			primo.vince();
+			secondo.perde();
+		} else {
 			System.out.println(secondo.getNome());
+			secondo.vince();
+			primo.perde();
+		}
 	}
 
 	public void scartaCarta(Player pl) {
-		
-		if(mazzo.vuoto())
+
+		if (mazzo.vuoto())
 			giraMazzo();
-			
+
 		System.out.println("Turno di " + pl.getNome());
 		System.out.println("Carta sul banco " + scarti.getCartaInCima());
 		if (!somethingMatch(pl)) {
 			System.out.println("Devi pescare una carta");
-			System.out.println("Hai pescato "+pl.aggiungiCarta(mazzo.pesca()));
-			
+			System.out.println("Hai pescato " + pl.aggiungiCarta(mazzo.pesca()));
+
 		}
 
 		if (somethingMatch(pl)) {
@@ -143,13 +148,13 @@ public class Game {
 		}
 		return false;
 	}
-	
+
 	public void giraMazzo() {
-		Carta primoScarto=scarti.pesca();
-		List<Carta> gliScarti= scarti.mischia();
-		this.mazzo=new Mazzo(gliScarti);
-		this.scarti= new Mazzo(primoScarto);
-		
+		Carta primoScarto = scarti.pesca();
+		List<Carta> gliScarti = scarti.mischia();
+		this.mazzo = new Mazzo("Mazzo", gliScarti);
+		this.scarti = new Mazzo("Scarti", primoScarto);
+
 	}
 
 	// public static List<String> insersciPescaAllaFine(Player pl){

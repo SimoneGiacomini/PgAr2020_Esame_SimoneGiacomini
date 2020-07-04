@@ -4,7 +4,7 @@ import javax.xml.stream.XMLStreamException;
 
 import classifica.Player;
 import gioco.Game;
-import gioco.Mazzo;
+import mazzo.Mazzo;
 
 
 
@@ -13,7 +13,9 @@ public class Main {
 
 	public static void main(String args[]) throws FileNotFoundException, XMLStreamException {
 
-		Mazzo mazzo= (new Mazzo(XMLManager.readCities("./input/nucleoBaseUnoGiOh.xml")));
+		Mazzo mazzo= (new Mazzo("UNI",XMLManager.readCities("./input/Uno_Gi_OhConPescaDue.xml")));
+		
+		
 		System.out.println(mazzo);
 		mazzo.mischia();
 		System.out.println(mazzo);

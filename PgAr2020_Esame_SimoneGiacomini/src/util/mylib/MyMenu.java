@@ -58,5 +58,14 @@ public class MyMenu<T> {
 	protected T[] getVoci() {
 		return voci;
 	}
+	
+	public String toString() {
+		StringBuilder fine=new StringBuilder();
+		System.out.println(getTitolo());
+		for (int i = 0; i < voci.length; i++) {
+			fine.append((i + 1) + ")\t" + voci[i]);
+		}
+		return fine.toString();
+	}
 
 }

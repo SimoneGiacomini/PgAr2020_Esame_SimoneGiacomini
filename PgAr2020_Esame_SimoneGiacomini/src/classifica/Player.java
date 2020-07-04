@@ -70,10 +70,17 @@ public class Player implements Comparable<Player>{
 		return this.nome;
 	}
 	
-	public boolean vince() {
+	public boolean isVincitore() {
 		return mano.isEmpty();
 	}
 	
+	public void vince() {
+		++vittorie;
+	}
+	
+	public void perde() {
+		++sconfitte;
+	}
 	public Carta aggiungiCarta(Carta c) {
 		mano.add(c);
 		return c;

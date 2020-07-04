@@ -1,4 +1,4 @@
-package gioco;
+package mazzo;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -10,18 +10,21 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import mazzo.Carta;
-
 public class Mazzo implements Comparable<Mazzo> {
 
 	private ArrayDeque<Carta> carte = new ArrayDeque<>();
 
-	public Mazzo(List<Carta> carte) {
+	private String nome;
 
+	public Mazzo(String nome, List<Carta> carte) {
+		this.nome = nome;
+		this.carte.clear();
 		this.carte.addAll(carte);
 	}
 
-	public Mazzo(Carta iniziale) {
+	public Mazzo(String nome,Carta iniziale) {
+		this.nome = nome;
+		this.carte.clear();
 		carte.addFirst(iniziale);
 	}
 
@@ -113,8 +116,11 @@ public class Mazzo implements Comparable<Mazzo> {
 		return hash;
 	}
 
+	public String getNome() {
+		return nome;
+	}
 	@Override
 	public int compareTo(Mazzo o) {
-		return o.hashCode()-hashCode();
+		return o.hashCode() - hashCode();
 	}
 }
